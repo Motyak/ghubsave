@@ -6,9 +6,8 @@ function get_repos_name_from_user
     local user=$1
     local max_nb_of_repos=${2:-59} # 60 requests/hour limit, 1 request to list repos
 
-    local json_res=$(
-        curl -sS \
-            "$GITHUB_API_URL/users/$user/repos?sort=updated&per_page=$max_nb_of_repos"
+    local json_res=$(curl -sS \
+        "$GITHUB_API_URL/users/$user/repos?sort=updated&per_page=$max_nb_of_repos"
     )
 
     echo "$json_res" | jq -r '.[] | .name'
