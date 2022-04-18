@@ -4,7 +4,7 @@ GITHUB_API_URL=https://api.github.com
 function get_repos_name_from_user
 {
     local user=$1
-    local max_nb_of_repos=${2:-100}
+    local max_nb_of_repos=${2:-59} # 60 requests/hour limit, 1 request to list repos
 
     local json_res=$(
         curl -sS \
